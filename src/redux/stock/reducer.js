@@ -1,4 +1,5 @@
 import { ADD_TO_STOCK, SET_SOLD_OUT, REMOVE_FROM_STOCK } from "./actions";
+import { ADD_TO_CART, CHANGE_QTY, OPERATION_QTY_PLUS } from "../cart/actions";
 
 const initialState = {};
 
@@ -16,7 +17,32 @@ export default (state = initialState, action) => {
           },
           qty: 5,
         },
-      }
+      };
+    }
+
+    case ADD_TO_CART: {
+      return {
+        ...state,
+        [payload]: {
+          ...state[payload],
+          qty: state[payload].qty - 1,
+        },
+      };
+    }
+
+    case CHANGE_QTY: {
+      const { id, operation } = payload;
+
+      return {
+        ...state,
+        [id]: {
+          ...state[id],
+          qty:
+            operation === OPERATION_QTY_PLUS
+              ? state[id].qty - 1
+              : state[id].qty + 1,
+        },
+      };
     }
 
     case REMOVE_FROM_STOCK: {
@@ -25,7 +51,7 @@ export default (state = initialState, action) => {
           return {
             ...acc,
             [item]: state[item],
-          }
+          };
         }
       }, {});
     }
@@ -36,12 +62,12 @@ export default (state = initialState, action) => {
         [payload.id]: {
           ...[state.id],
           qty: 0,
-        }
-      }
+        },
+      };
     }
 
     default: {
       return state;
     }
   }
-}
+};
