@@ -10,7 +10,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         [payload.id]: {
-          item: payload,
+          item: {
+            ...payload,
+            id: String(payload.id),
+          },
           qty: 5,
         },
       }

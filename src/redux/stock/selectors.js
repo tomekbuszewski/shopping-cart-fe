@@ -9,9 +9,7 @@ const getAllProductsFunction = (store) => {
 export const getAllProducts = createSelector(getAllProductsFunction, (f) => f);
 
 const getAllAvailableProductsFunction = (store) => {
-  const { stock } = store;
-
-  return getAllProducts(stock).filter((item) => item.qty > 0);
+  return getAllProducts(store).filter((item) => item.qty > 0);
 };
 
 export const getAllAvailableProducts = createSelector(

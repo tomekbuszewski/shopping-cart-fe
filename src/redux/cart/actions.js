@@ -7,3 +7,7 @@ export const CHANGE_QTY = "@CARD/CHANGE_QUANTITY";
 export const addToCart = payload => ({  type: ADD_TO_CART, payload });
 export const removeFromCart = payload => ({ type: REMOVE_FROM_CART, payload });
 export const changeQuantity = payload => ({ type: CHANGE_QTY, payload });
+
+// Helpers
+export const OPERATION_QTY_PLUS = "PLUS";
+export const OPERATION_QTY_MINUS = "MINUS";

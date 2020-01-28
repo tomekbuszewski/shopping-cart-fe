@@ -1,9 +1,12 @@
 import { createSelector } from "reselect";
 
 const getAllProductsInCartFunction = (store) => {
-  const { cart } = store;
+  const { cart, stock } = store;
 
-  return Object.keys(store.cart).map((item) => store.cart[item]);
+  return Object.keys(cart).map((item) => ({
+    item: stock[item].item,
+    qty: cart[item],
+  }));
 };
 export const getAllProductsInCart = createSelector(
   getAllProductsInCartFunction,
@@ -12,3 +15,6 @@ export const getAllProductsInCart = createSelector(
 
 const getProductFunction = (store, id) => store.cart[id];
 export const getProduct = createSelector(getProductFunction, f => f);
+
+const isItemInCartFunction = (store, id) => Boolean(store.cart[id]);
+export const isItemInCart = createSelector(isItemInCartFunction, f => f);
