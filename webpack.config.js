@@ -11,7 +11,7 @@ const SRC_PATH = "src";
 module.exports = {
   mode: PROD ? "production" : "development",
   devtool: PROD && "inline-source-map",
-  entry: [path.resolve(SRC_PATH, "index.js")],
+  entry: ["babel-polyfill", path.resolve(SRC_PATH, "index.js")],
   output: {
     path: path.resolve(PUBLIC_PATH),
     filename: PROD ? "[name].[hash].js" : "[name].js",

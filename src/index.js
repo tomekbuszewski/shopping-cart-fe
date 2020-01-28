@@ -1,10 +1,13 @@
 import * as React from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
 
-const App = () => {
-  const [message, setMessage] = React.useState("Hello");
+import store from "./redux/store";
+import App from "./components/App";
 
-  return <div onClick={() => setMessage("Hello there, clicker")}>{message}</div>
-};
-
-render(<App />, document.querySelector("#app"));
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("#app"),
+);
