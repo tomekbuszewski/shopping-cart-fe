@@ -1,0 +1,19 @@
+{
+  "name": "shopping-cart",
+  "version": "0.0.1",
+  "description": "",
+  "main": "public/index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tomekbuszewski/shopping-cart-fe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomekbuszewski/shopping-cart-fe/issues"
+  },
+  "homepage": "https://github.com/tomekbuszewski/shopping-cart-fe#readme"
+}
