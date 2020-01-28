@@ -9,7 +9,7 @@ import { isItemInCart } from "../redux/cart/selectors";
 
 import { fetchData } from "../../__mocks__/stock";
 
-import { CartHolderItem, CartItem, Button, Header } from "../ui";
+import { CartHolderItem, CartItem, Button, Header, Error } from "../ui";
 import Price from "./Price";
 
 const ShopComponent = (props) => {
@@ -19,7 +19,7 @@ const ShopComponent = (props) => {
     // Simulating loading of data
     (async () => {
       try {
-        const { data } = await fetchData();
+        const { data } = await fetchData(window.location.hash === "#showUIError");
         data.forEach((item) => {
           props.addToStock(item);
         });
@@ -36,9 +36,9 @@ const ShopComponent = (props) => {
 
   if (dataLoaded === 2) {
     return (
-      <div>
+      <Error>
         Sorry, we are experiencing technical problems, please check back later.
-      </div>
+      </Error>
     );
   }
 

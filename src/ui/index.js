@@ -4,6 +4,7 @@ export * from "./CartItem";
 export * from "./CartItemsHolder";
 export * from "./Category";
 export * from "./Container";
+export * from "./Error";
 export * from "./Header";
 export * from "./Image";
 export * from "./Price";
