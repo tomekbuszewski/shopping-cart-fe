@@ -12,9 +12,10 @@ import {
 import { Cart as View, Header, CartItem, CartHolderItem, Button } from "../ui";
 import { Price } from "./";
 
+export const priceOffAfter = 50;
+export const discountValue = 0.01;
+
 const CartComponent = (props) => {
-  const priceOffAfter = 50;
-  const discountValue = 0.01;
   const [active, setActive] = React.useState(false);
   const [total, setTotal] = React.useState(props.total);
 

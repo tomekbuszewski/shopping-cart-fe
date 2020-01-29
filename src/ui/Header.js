@@ -10,7 +10,7 @@ export const Header = styled.h1`
   margin: ${props => props.border && "16px 0"};
   border-bottom: ${props => props.border && `1px solid ${props.theme.colors.accentBright}`};
   
-  ${props => props.as === "h3" && css`
+  ${props => (props.as === "h3" || props.as === "h4") && css`
     font-size: ${props => props.theme.fonts.sizes.base};
   `};
 `;
