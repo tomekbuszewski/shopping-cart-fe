@@ -41,3 +41,24 @@ Also, as for Redux goes, I simplified a lot of processes. For example, after use
 backend should be notified and update the stock. Here, it is all handled within Redux' actions. So there is 
 a side effect of certain actions that bleeds to another store. I know this is a bad practice, but like I've said,
 given this amount of time and an actual lack of backend, this is a compromise I've chosen.
+
+
+## Commands
+
+To serve local version (spawns at localhost:5000):
+
+```bash
+§ npm run serve
+```
+
+To build production version:
+
+```bash
+§ npm run build:prod
+```
+
+To run development server:
+
+```bash
+§ npm run hmr
+```
