@@ -2,6 +2,9 @@
 
 Simple JavaScript app built with React, Redux and Styled Components.
 
+Online: [https://tb-shopping-cart.surge.sh](https://tb-shopping-cart.surge.sh)
+
+---
 
 ## Tech stack
 
