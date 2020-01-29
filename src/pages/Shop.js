@@ -9,8 +9,8 @@ import { isItemInCart } from "../redux/cart/selectors";
 
 import { fetchData } from "../../__mocks__/stock";
 
-import { CartHolderItem, CartItem, Button, Header, Error } from "../ui";
-import Price from "./Price";
+import { CartHolderItem, CartItem, Button, Error } from "../ui";
+import { Price, Cart } from "../components";
 
 const ShopComponent = (props) => {
   const [dataLoaded, setDataLoaded] = React.useState(0);
@@ -44,7 +44,7 @@ const ShopComponent = (props) => {
 
   return (
     <React.Fragment>
-      <Header>The Bill Murray Store</Header>
+      <Cart />
       <CartHolderItem>
         {props.items.map(({ item, qty }) => {
           const isItemInCart = props.isItemInCart(item.id);
@@ -95,4 +95,4 @@ const mapDispatch = {
   removeFromCart,
 };
 
-export default connect(mapState, mapDispatch)(ShopComponent);
+export const Shop = connect(mapState, mapDispatch)(ShopComponent);
