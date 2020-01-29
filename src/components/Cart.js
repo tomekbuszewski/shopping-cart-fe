@@ -64,6 +64,7 @@ const CartComponent = (props) => {
           </CartHolderItem>
           Total: <Price price={total} />
           {props.total >= priceOffAfter && <p>You're getting 10% discount!</p>}
+          <div style={{ marginTop: "auto" }}><Button full important>Go to checkout</Button></div>
         </React.Fragment>
       ) : (
         <p>Your cart is empty.</p>

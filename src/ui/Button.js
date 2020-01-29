@@ -41,4 +41,10 @@ export const Button = styled.button`
     line-height: 40px;
     padding: 0;
   `};
+  
+  ${props => props.full && css`
+    width: 100%;
+    padding: 16px;
+    font-weight: bold;
+  `};
 `;

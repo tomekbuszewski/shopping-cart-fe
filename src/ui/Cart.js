@@ -22,6 +22,9 @@ export const Cart = styled(props => {
   right: 0;
   transform: translateX(${props => props.active ? "0" : "100%"});
   
+  display: flex;
+  flex-flow: column;
+  
   background: ${props => props.theme.colors.base};
   padding: 16px;
   border-left: 1px solid ${props => props.theme.colors.baseDark};
