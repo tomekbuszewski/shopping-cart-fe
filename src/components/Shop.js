@@ -1,13 +1,16 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { isItemInCart } from "../redux/cart/selectors";
 
 import { addToStock } from "../redux/stock/actions";
 import { getAllAvailableProducts } from "../redux/stock/selectors";
 
 import { addToCart, removeFromCart } from "../redux/cart/actions";
+import { isItemInCart } from "../redux/cart/selectors";
 
 import { fetchData } from "../../__mocks__/stock";
+
+import { CartHolderItem, CartItem, Button, Header, Error } from "../ui";
+import Price from "./Price";
 
 const ShopComponent = (props) => {
   const [dataLoaded, setDataLoaded] = React.useState(0);
@@ -16,7 +19,7 @@ const ShopComponent = (props) => {
     // Simulating loading of data
     (async () => {
       try {
-        const { data } = await fetchData();
+        const { data } = await fetchData(window.location.hash === "#showUIError");
         data.forEach((item) => {
           props.addToStock(item);
         });
@@ -33,36 +36,51 @@ const ShopComponent = (props) => {
 
   if (dataLoaded === 2) {
     return (
-      <div>
+      <Error>
         Sorry, we are experiencing technical problems, please check back later.
-      </div>
+      </Error>
     );
   }
 
   return (
-    <ul>
-      {props.items.map(({ item, qty }) => {
-        const isItemInCart = props.isItemInCart(item.id);
+    <React.Fragment>
+      <Header>The Bill Murray Store</Header>
+      <CartHolderItem>
+        {props.items.map(({ item, qty }) => {
+          const isItemInCart = props.isItemInCart(item.id);
 
-        return (
-          <li key={item.id}>
-            {item.name}
-            {qty > 0
-              ? !isItemInCart && (
-                  <button onClick={() => props.addToCart(item.id)}>
-                    Add to cart
-                  </button>
-                )
-              : "Sold out"}
-            {isItemInCart && (
-              <button onClick={() => props.removeFromCart(item.id)}>
-                Remove from cart
-              </button>
-            )}
-          </li>
-        );
-      })}
-    </ul>
+          return (
+            <CartItem
+              large
+              key={item.id}
+              name={item.name}
+              category={item.category}
+              img={item.image}
+            >
+              {qty > 0
+                ? !isItemInCart && (
+                    <React.Fragment>
+                      <Button
+                        important
+                        onClick={() => props.addToCart(item.id)}
+                      >
+                        Add to cart
+                      </Button>
+                      &nbsp;
+                      <Price price={item.price} />
+                    </React.Fragment>
+                  )
+                : "Sold out"}
+              {isItemInCart && (
+                <Button important onClick={() => props.removeFromCart(item.id)}>
+                  Remove from cart
+                </Button>
+              )}
+            </CartItem>
+          );
+        })}
+      </CartHolderItem>
+    </React.Fragment>
   );
 };
 

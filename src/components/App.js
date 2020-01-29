@@ -1,13 +1,17 @@
 import * as React from "react";
 
+import GlobalStyle from "../ui/base";
+import { Container } from "../ui";
+
 import Shop from "./Shop";
 import Cart from "./Cart";
 
 const App = () => (
-  <main>
+  <Container>
+    <GlobalStyle />
     <Shop />
     <Cart />
-  </main>
+  </Container>
 );
 
 export default App;
