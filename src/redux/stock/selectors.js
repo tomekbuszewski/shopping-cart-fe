@@ -16,3 +16,12 @@ export const getAllAvailableProducts = createSelector(
   getAllAvailableProductsFunction,
   (f) => f,
 );
+
+const getFilteredProductsFunction = (store, filter) => {
+  return getAllProducts(store).sort(filter);
+};
+
+export const getFilteredProducts = createSelector(
+  getFilteredProductsFunction,
+  (f) => f,
+);
