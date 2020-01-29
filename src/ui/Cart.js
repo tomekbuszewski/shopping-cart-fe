@@ -20,6 +20,7 @@ export const Cart = styled(props => {
   max-width: calc(95vw - 40px);
   top: 0;
   right: 0;
+  z-index: 10;
   transform: translateX(${props => props.active ? "0" : "100%"});
   
   display: flex;

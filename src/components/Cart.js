@@ -1,5 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getAllProductsInCart, getCartTotal } from "../redux/cart/selectors";
 import {
@@ -25,6 +26,12 @@ const CartComponent = (props) => {
     setTotal(newTotal);
   });
 
+  const buttonConfig = {
+    small: true,
+    rounded: true,
+    accent: true,
+  };
+
   return (
     <View active={active} setter={() => setActive(!active)}>
       <Header as="h3">Your cart</Header>
@@ -38,9 +45,7 @@ const CartComponent = (props) => {
                 In cart: {qty}
                 <br />
                 <Button
-                  small
-                  rounded
-                  accent
+                  {...buttonConfig}
                   onClick={() =>
                     props.changeQuantity({
                       id: item.id,
@@ -51,9 +56,7 @@ const CartComponent = (props) => {
                   +
                 </Button>
                 <Button
-                  small
-                  rounded
-                  accent
+                  {...buttonConfig}
                   onClick={() =>
                     props.changeQuantity({
                       id: item.id,
@@ -69,9 +72,11 @@ const CartComponent = (props) => {
           Total: <Price price={total} />
           {props.total >= priceOffAfter && <p>You're getting 10% discount!</p>}
           <div style={{ marginTop: "auto" }}>
-            <Button full important>
-              Go to checkout
-            </Button>
+            <Link to="/checkout">
+              <Button full important>
+                Go to checkout
+              </Button>
+            </Link>
           </div>
         </React.Fragment>
       ) : (
