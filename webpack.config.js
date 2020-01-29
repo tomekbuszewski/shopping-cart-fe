@@ -10,11 +10,11 @@ const SRC_PATH = "src";
 
 module.exports = {
   mode: PROD ? "production" : "development",
-  devtool: PROD && "inline-source-map",
-  entry: ["babel-polyfill", path.resolve(SRC_PATH, "index.js")],
+  devtool: !PROD && "inline-source-map",
+  entry: [path.resolve(SRC_PATH, "index.js")],
   output: {
-    path: path.resolve(PUBLIC_PATH),
-    filename: PROD ? "[name].[hash].js" : "[name].js",
+    path: path.resolve(PUBLIC_PATH, "assets"),
+    filename: PROD ? "[name].[chunkhash].js" : "[name].js",
     publicPath: "/assets/",
   },
   module: {
@@ -31,18 +31,11 @@ module.exports = {
     nodeEnv: ENV,
     mergeDuplicateChunks: true,
     splitChunks: {
-      chunks: "all",
-      minSize: 30000,
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: "-",
       cacheGroups: {
-        vendor: {
-          chunks: "initial",
-          test: "vendor",
-          name: "vendor",
+        vendors: {
+          minChunks: 1,
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "all",
           enforce: true,
         },
       },
