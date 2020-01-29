@@ -2,7 +2,7 @@ import * as React from "react";
 import { Price as View } from "../ui";
 
 // Solution taken from https://blog.abelotech.com/posts/number-currency-formatting-javascript/
-const Price = (props) => (
+export const Price = (props) => (
   <View>
     $
     {(props.price * props.qty)
@@ -14,5 +14,3 @@ const Price = (props) => (
 Price.defaultProps = {
   qty: 1,
 };
-
-export default Price;

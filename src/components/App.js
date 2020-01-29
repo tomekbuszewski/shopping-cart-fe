@@ -1,16 +1,19 @@
 import * as React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
 import GlobalStyle from "../ui/base";
-import { Container } from "../ui";
+import { Container, Header } from "../ui";
 
-import Shop from "./Shop";
-import Cart from "./Cart";
+import { Checkout, Shop }  from "../pages";
 
 const App = () => (
   <Container>
     <GlobalStyle />
-    <Shop />
-    <Cart />
+    <Header>The Bill Murray Store</Header>
+    <BrowserRouter>
+      <Route path="/" exact component={Shop} />
+      <Route path="/checkout" component={Checkout} />
+    </BrowserRouter>
   </Container>
 );
 

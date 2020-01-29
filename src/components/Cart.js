@@ -9,15 +9,19 @@ import {
 } from "../redux/cart/actions";
 
 import { Cart as View, Header, CartItem, CartHolderItem, Button } from "../ui";
-import Price from "./Price";
+import { Price } from "./";
 
 const CartComponent = (props) => {
   const priceOffAfter = 50;
+  const discountValue = 0.01;
   const [active, setActive] = React.useState(false);
   const [total, setTotal] = React.useState(props.total);
 
   React.useEffect(() => {
-    const newTotal = props.total >= priceOffAfter ? props.total - (props.total * 0.01) : props.total;
+    const newTotal =
+      props.total >= priceOffAfter
+        ? props.total - props.total * discountValue
+        : props.total;
     setTotal(newTotal);
   });
 
@@ -64,7 +68,11 @@ const CartComponent = (props) => {
           </CartHolderItem>
           Total: <Price price={total} />
           {props.total >= priceOffAfter && <p>You're getting 10% discount!</p>}
-          <div style={{ marginTop: "auto" }}><Button full important>Go to checkout</Button></div>
+          <div style={{ marginTop: "auto" }}>
+            <Button full important>
+              Go to checkout
+            </Button>
+          </div>
         </React.Fragment>
       ) : (
         <p>Your cart is empty.</p>
@@ -82,4 +90,4 @@ const mapDispatch = {
   changeQuantity,
 };
 
-export default connect(mapState, mapDispatch)(CartComponent);
+export const Cart = connect(mapState, mapDispatch)(CartComponent);
